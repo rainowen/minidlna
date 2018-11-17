@@ -31,3 +31,46 @@ Prerequisites
 
 
 Justin Maggard
+
+
+## New Added for build RMVB support into mindlna 1.2.1
+
+forked from https://blog.csdn.net/JOYIST/article/details/79191765
+
+## build steps
+sudo apt-get install build-essential libexif-dev libjpeg-dev libid3tag0-dev libFLAC-dev libvorbis-dev libsqlite3-dev libavformat-dev autoconf automake  
+
+  - ./autogen.sh  
+  - ./configure  
+  - make
+
+if come out error using above commands as bellow:
+
+    make[1]: Entering directory '/home/ubuntu/minidlna-1.1.5'
+    Making all in po
+    make[2]: Entering directory '/home/ubuntu/minidlna-1.1.5/po'
+    test ! -f ./minidlna.pot || \
+    test -z "da.gmo de.gmo es.gmo fr.gmo it.gmo ja.gmo ko.gmo nb.gmo nl.gmo pl.gmo ru.gmo sl.gmo sv.gmo" || make da.gmo de.gmo es.gmo fr.gmo it.gmo ja.gmo ko.gmo nb.gmo nl.gmo pl.gmo ru.gmo sl.gmo sv.gmo
+    make[3]: Entering directory '/home/ubuntu/minidlna-1.1.5/po'
+    rm -f da.gmo && : -c --statistics --verbose -o da.gmo da.po
+    mv: cannot stat 't-da.gmo': No such file or directory
+    Makefile:131: recipe for target 'da.gmo' failed
+    make[3]: *** [da.gmo] Error 1
+    make[3]: Leaving directory '/home/ubuntu/minidlna-1.1.5/po'
+    Makefile:168: recipe for target 'stamp-po' failed
+    make[2]: *** [stamp-po] Error 2
+    make[2]: Leaving directory '/home/ubuntu/minidlna-1.1.5/po'
+    Makefile:627: recipe for target 'all-recursive' failed
+    make[1]: *** [all-recursive] Error 1
+    make[1]: Leaving directory '/home/ubuntu/minidlna-1.1.5'
+    Makefile:453: recipe for target 'all' failed
+    make: *** [all] Error 2 
+
+Please install msgfmt and then build again
+
+    sudo apt-get install gettext
+
+### 正常启动  
+sudo service minidlna start  
+### 刷新列表  
+sudo service minidlna restart
